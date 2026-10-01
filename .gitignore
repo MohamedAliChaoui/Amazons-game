@@ -1,0 +1,56 @@
+.env
+venv/
+
+.venv/
+specs.txt
+
+__pycache__/
+*.pyc
+
+htmlcov/
+.coverage
+
+.pytest_cache/
+*.egg-info
+docs/_build/
+
+# LaTeX build artifacts for the final report
+pdp/02-final/*.aux
+pdp/02-final/*.bbl
+pdp/02-final/*.blg
+pdp/02-final/*.fdb_latexmk
+pdp/02-final/*.fls
+pdp/02-final/*.log
+pdp/02-final/*.out
+pdp/02-final/*.toc
+pdp/02-final/*.lof
+pdp/02-final/*.lot
+pdp/02-final/*.synctex.gz
+pdp/02-final/*.xdv
+pdp/02-final/*.nav
+pdp/02-final/*.snm
+pdp/02-final/*.vrb
+pdp/02-final/__tmp_*
+pdp/02-final/*.data.minted
+pdp/02-final/_minted-*/
+pdp/02-final/missfont.log
+pdp/02-final/texput.log
+
+# Local UML sources used to regenerate report diagrams
+pdp/02-final/*.puml
+
+# Obsolete or local-only report exports not used by the final LaTeX report
+pdp/02-final/algo.png
+pdp/02-final/layered_architectures.png
+pdp/02-final/sequence_diagram.png
+pdp/02-final/slide4_full_algo.png
+pdp/02-final/diag-seq-ai.png
+pdp/02-final/diag-seq-hum.png
+pdp/02-final/diagramme-de-classe.png
+pdp/02-final/use_case_diagram.png
+
+# Local-only review artifacts and alternate diagram exports
+pdp/02-final/_pdfcheck/
+pdp/02-final/class1.pdf
+pdp/02-final/diag-seq-cli-hh.pdf
+pdp/02-final/diag-seq-network.pdf

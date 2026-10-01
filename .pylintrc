@@ -1,0 +1,6 @@
+[MAIN]
+recursive = yes
+ignored-modules=gi,gi.repository
+
+[MESSAGES CONTROL]
+disable = docstring-first-line-empty,import-error,magic-value-comparison,too-many-try-statements,too-many-branches,too-many-statements,too-complex,missing-type-doc,missing-module-docstring,import-outside-toplevel,consider-using-assignment-expr,use-set-for-membership,no-else-continue,invalid-name,broad-exception-caught,too-many-locals,redefined-outer-name,reimported,wrong-import-order,too-many-instance-attributes,too-many-return-statements,too-many-nested-blocks,too-many-arguments,too-many-public-methods,attribute-defined-outside-init,missing-function-docstring,unnecessary-pass,confusing-consecutive-elif,else-if-used,bad-builtin,implicit-str-concat,no-self-use,while-used,unused-argument,unused-variable,protected-access,trailing-whitespace,redefined-loop-name,unused-import,deprecated-method,line-too-long,too-many-lines,wrong-import-position,using-constant-test,logging-fstring-interpolation,no-else-return,consider-using-in,arguments-out-of-order,no-else-break,function-redefined,ungrouped-imports,superfluous-parens,not-callable,consider-ternary-expression,too-few-public-methods,consider-refactoring-into-while-condition

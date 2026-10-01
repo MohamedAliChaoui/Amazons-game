@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amazons"
+description = "Implementation of the Game of Amazons"
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["version"]
+
+# Projet réalisé par une équipe
+authors = [
+  {name = "PDP Amazons Team"}
+]
+
+dependencies = [
+    "pytest",
+    "pytest-cov",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pylint",
+]
+
+[project.scripts]
+amazons = "amazons.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["amazons*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "amazons.__version__"}
+
+# ------------------------------------------------
+# pytest configuration
+# ------------------------------------------------
+
+[tool.pytest.ini_options]
+addopts = [
+    "--cov=amazons",
+    "--cov-report=term",
+    "--cov-report=html",
+    "--cov-branch"
+]
+
+testpaths = [
+    "tests"
+]
+
+python_files = [
+    "test_*.py"
+]
+
+# ------------------------------------------------
+# coverage configuration
+# ------------------------------------------------
+
+[tool.coverage.run]
+branch = true
+source = ["amazons"]
+omit = [
+    "amazons/view/*",
+    "amazons/__main__.py"
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+
+
+
+# ------------------------------------------------
+# documentation sphinx
+# ------------------------------------------------
+
+[tool.sphinx]
+source-dir = "docs"
+build-dir = "docs/_build"

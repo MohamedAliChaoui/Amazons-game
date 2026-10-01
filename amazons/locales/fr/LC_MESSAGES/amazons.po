@@ -1,0 +1,571 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+msgid "=== AMAZONS CLI ==="
+msgstr "=== AMAZONS CLI ==="
+
+msgid "Board size Default: {size}"
+msgstr "Taille du plateau par défaut : {size}"
+
+msgid "Type 'help' or 'h' to see commands."
+msgstr "Tapez 'help' ou 'h' pour voir les commandes."
+
+msgid "Startup options are available with: python -m amazons -h"
+msgstr "Les options de démarrage sont disponibles avec : python -m amazons -h"
+
+msgid "Type 'show configuration' to inspect the active settings."
+msgstr "Tapez 'show configuration' pour consulter les paramètres actifs"
+
+msgid "Do you want to play against a human, the AI, or Network? (hu/ai/network): "
+msgstr "Voulez-vous jouer contre un humain ou l'IA ou en reseaux ? (hu/ai/network) : "
+
+msgid "Invalid input, please choose 'hu', 'ai' or 'aiai'."
+msgstr "Entrée invalide, choisissez 'hu', 'ai' ou 'aiai'."
+
+msgid "Board size (4-11): "
+msgstr "Taille du plateau (4-11) : "
+
+msgid "Size must be between 4 and 11."
+msgstr "La taille doit être entre 4 et 11."
+
+msgid "Enter a valid number."
+msgstr "Entrez un nombre valide."
+
+msgid "Commands:"
+msgstr "Commandes :"
+
+msgid "  new | n           Start new game"
+msgstr "  new | n           Nouvelle partie"
+
+msgid "  show board | sb   Display board"
+msgstr "  show board | sb   Afficher le plateau"
+
+msgid "  help | h          Show help"
+msgstr "  help | h          Afficher l'aide"
+
+msgid "  quit | q          Exit"
+msgstr "  quit | q          Quitter"
+
+msgid "\nBoard:"
+msgstr "\nPlateau :"
+
+msgid "Bye!"
+msgstr "Au revoir !"
+
+
+msgid "Starting new game against human..."
+msgstr "Nouvelle partie contre un humain..."
+
+msgid "Starting new game against AI..."
+msgstr "Nouvelle partie contre l'IA..."
+
+msgid "Starting new AI vs AI game..."
+msgstr "Nouvelle partie IA vs IA..."
+
+msgid "Starting network game as HOST..."
+msgstr "Démarrage d'une partie en réseau en tant qu'hôte..."
+
+msgid "Start the server first with '(server start [port])' or join the server with '(join addrs:port)'."
+msgstr "Commencez par démarrer le serveur avec '(server start [port])' ou rejoindre le serveur avec '(join addrs:port)'."
+
+msgid "No servers found on LAN."
+msgstr "Aucun serveur trouvé sur le réseau local."
+
+msgid "Server started on port {port}."
+msgstr "Serveur démarré sur le port {port}."
+
+msgid "PLayer is connected to your server,you can now either start a game with 'new network' or type 'players' and choose a player with 'new PLAYER_ID'."
+msgstr "Un joueur est connecté à votre serveur. Vous pouvez maintenant soit lancer une partie avec 'new network', soit taper 'players' et choisir un joueur avec 'new PLAYER_ID'."
+
+msgid "Now you can start the game with (new network)."
+msgstr "Vous pouvez maintenant démarrer la partie avec (new network)."
+
+msgid "Waiting for remote player to connect..."
+msgstr "En attente de la connexion du lecteur distant..."
+
+msgid "[DEBUG SERVER] Accepted connection from {addr}"
+msgstr "[DEBUG SERVER] Connexion acceptée depuis {addr}"
+
+msgid "Waiting for remote player name..."
+msgstr "En attente du nom du joueur distant..."
+
+msgid "New game 10x10 contre network"
+msgstr "Nouveau jeu 10x10 contre réseau"
+
+msgid "\nIt's the turn of {joueur.nom} ({joueur.couleur})"
+msgstr "\nC'est au tour de {joueur.nom} ({joueur.couleur})"
+
+msgid "the parti is not start yet"
+msgstr "La parti n'a pas encore commencé."
+
+msgid "Time remaining -> White: {white:.1f}s | Black: {black:.1f}s"
+msgstr "Temps restants -> Blanc : {white:.1f}s | Noir : {black:.1f}s"
+
+msgid "Your action (choice, move, undo): "
+msgstr "Votre action (choix, coup, annuler) : "
+
+msgid "Available Servers:"
+msgstr "Serveurs disponibles :"
+
+msgid "Your name (White): "
+msgstr "Votre nom (Blanc): "
+
+msgid "Your name (black): "
+msgstr "Votre nom (Noir): "
+
+msgid "Unknown show command. Use: board, history, time, configuration"
+msgstr "Commande inconnue. Utilisez : board, history, time, configuration"
+
+msgid "Error: size must be between 4 and 11"
+msgstr "Erreur : la taille doit être comprise entre 4 et 11"
+
+msgid "Only the host can load a saved game in network mode."
+msgstr "Seul l'hôte peut charger une partie sauvegardée en mode réseau."
+
+msgid ""
+"Commands:\n"
+"            new | n [hu|ai|aiai|network]  Start a new game\n"
+"            new PLAYER_ID                Invite an idle player to a new game\n"
+"            show board | sb              Display the board\n"
+"            show history                 Display move history\n"
+"            history | hist               Show move history\n"
+"            show time                    Display remaining time\n"
+"            show configuration           Display current settings\n"
+"            server list                  Discover servers on LAN\n"
+"            server start [port]          Start the local server\n"
+"            server stop                  Stop the local server\n"
+"            server status                Show server port, clients and games\n"
+"            players [PLAYER_ID]          Show connected players or one profile\n"
+"            scoreboard                   Show player wins, losses and games\n"
+"            join <host[:port]>           Connect to a remote server\n"
+"            ping                         Ping the connected server\n"
+"            status                       Show network status\n"
+"            move <from>-<to>             Start a move; arrow is prompted\n"
+"                                         separately\n"
+"            choice <square>              Show legal moves from a square\n"
+"            undo [N]                     Undo the last round; with N, repeat\n"
+"                                         undo up to N times (consent is asked\n"
+"                                         each time in human-vs-human)\n"
+"            redo [N]                     Redo the last undone round; with N,\n"
+"                                         repeat redo up to N times (may stop\n"
+"                                         early if the next redo is not yours)\n"
+"            accept                       Accept the current invitation\n"
+"            decline                      Decline the current invitation\n"
+"            cancel                       Cancel the pending invitation\n"
+"            help | h                     Show help\n"
+"            quit | q                     Exit\n"
+"\n"
+"            Startup options:\n"
+"                python -m amazons -h\n"
+"                -n, --size\n"
+"                -t, --time\n"
+"                -g, --gui\n"
+"                --ai-time\n"
+"                --ai-mode\n"
+"                --ai-minimax-scoring\n"
+"                --ai-minimax-depth\n"
+"            "
+
+msgstr ""
+"Commandes :\n"
+"            new | n [hu|ai|aiai|network]  Démarrer une nouvelle partie\n"
+"            new PLAYER_ID                Inviter un joueur disponible à une nouvelle partie\n"
+"            show board | sb              Afficher le plateau\n"
+"            show history                 Afficher l'historique\n"
+"            history | hist               Afficher l'historique des coups\n"
+"            show time                    Afficher le temps restant\n"
+"            show configuration           Afficher la configuration active\n"
+"            server list                  Rechercher les serveurs sur le LAN\n"
+"            server start [port]          Démarrer le serveur local\n"
+"            server stop                  Arrêter le serveur local\n"
+"            server status                Afficher le port, les clients et les parties en cours\n"
+"            players [PLAYER_ID]          Afficher les joueurs connectés ou un profil détaillé\n"
+"            scoreboard                   Afficher victoires, défaites et parties jouées\n"
+"            join <host[:port]>           Se connecter à un serveur distant\n"
+"            ping                         Tester la connexion au serveur\n"
+"            status                       Afficher l'état du réseau\n"
+"            move <from>-<to>             Démarrer un coup ; la flèche est\n"
+"                                         demandée séparément\n"
+"            choice <square>              Afficher les coups légaux depuis une case\n"
+"            undo [N]                     Annuler le dernier tour ; avec N, répéter\n"
+"                                         l'annulation jusqu'à N fois (avec accord\n"
+"                                         à chaque fois en humain contre humain)\n"
+"            redo [N]                     Refaire le dernier tour annulé ; avec N,\n"
+"                                         répète jusqu'à N fois (peut s'arrêter\n"
+"                                         avant si le prochain redo n'est pas le vôtre)\n"
+"            accept                       Accepter l'invitation en cours\n"
+"            decline                      Refuser l'invitation en cours\n"
+"            cancel                       Annuler l'invitation en attente\n"
+"            help | h                     Afficher l'aide\n"
+"            quit | q                     Quitter\n"
+"\n"
+"            Options de démarrage :\n"
+"                python -m amazons -h\n"
+"                -n, --size\n"
+"                -t, --time\n"
+"                -g, --gui\n"
+"                --ai-time\n"
+"                --ai-mode\n"
+"                --ai-minimax-scoring\n"
+"                --ai-minimax-depth\n"
+"            "
+
+msgid "Connected to LAN server"
+msgstr "Connecté au serveur LAN"
+
+msgid "AI is thinking..."
+msgstr "L'IA réfléchit..."
+
+msgid "Move undone. Back to start."
+msgstr "Coup annulé. Retour au départ."
+
+msgid "Nothing to undo"
+msgstr "Rien à annuler"
+
+msgid "Nothing to redo."
+msgstr "Rien à rejouer."
+
+msgid "No moves played yet."
+msgstr "Aucun coup joué."
+
+msgid "=== Move History ==="
+msgstr "=== Historique des coups ==="
+
+msgid "=== Time Remaining ==="
+msgstr "=== Temps restant ==="
+
+msgid "=== Configuration ==="
+msgstr "=== Configuration ==="
+
+msgid "*** GAME OVER ***"
+msgstr "*** FIN DE PARTIE ***"
+
+msgid "RESULT: BLACK WINS!"
+msgstr "RÉSULTAT : BLACK GAGNE !"
+
+msgid "RESULT: WHITE WINS!"
+msgstr "RÉSULTAT : WHITE GAGNE !"
+
+msgid "RESULT: DRAW!"
+msgstr "RÉSULTAT : ÉGALITÉ !"
+
+msgid "RESULT: BLACK WINS (White ran out of time)!"
+msgstr "RÉSULTAT : BLACK GAGNE (White a manqué de temps) !"
+
+msgid "RESULT: WHITE WINS (Black ran out of time)!"
+msgstr "RÉSULTAT : WHITE GAGNE (Black a manqué de temps) !"
+
+msgid "Invalid format. Use: move e2-e4"
+msgstr "Format invalide. Utilisez : move e2-e4"
+
+msgid "Invalid coordinates (e.g., a1, e2)."
+msgstr "Coordonnées invalides (ex : a1, e2)."
+
+msgid "Invalid coordinates. Use algebraic notation (e.g., a1, d4)."
+msgstr "Coordonnées invalides. Utilisez la notation algébrique (ex : a1, d4)."
+
+msgid "Invalid arrow position (e.g., e6)."
+msgstr "Position de flèche incorrecte (ex : e6)."
+
+msgid "Invalid action! Type move, undo, redo, choice, hint, pause or save."
+msgstr "Action invalide ! Tapez move, undo, redo, choice, hint, pause ou save."
+
+msgid "You haven't played any move to undo yet."
+msgstr "Vous n'avez encore joué aucun coup à annuler."
+
+msgid "No hint available."
+msgstr "Pas de conseil disponible."
+
+msgid "Pause only available during a game."
+msgstr "Pause disponible uniquement pendant une partie."
+
+msgid "Undo only available during a game."
+msgstr "Undo disponible uniquement pendant une partie."
+
+msgid "Redo only available during a game."
+msgstr "Redo disponible uniquement pendant une partie."
+
+msgid "Hint only available during a game."
+msgstr "Hint disponible uniquement pendant une partie."
+
+msgid "Unknown mode. Use 'local' or 'lan'."
+msgstr "Mode inconnu. Utilisez 'local' ou 'lan'."
+
+msgid "Game {state}."
+msgstr "Partie {state}."
+
+msgid "PAUSED"
+msgstr "EN PAUSE"
+
+msgid "RESUMED"
+msgstr "REPRISE"
+
+msgid "It's {name}'s turn ({color})"
+msgstr "C'est au tour de {name} ({color})"
+
+msgid "Time remaining -> White: {w}s | Black: {b}s"
+msgstr "Temps restant -> Blanc : {w}s | Noir : {b}s"
+
+msgid "AI played: {move}"
+msgstr "L'IA a joué : {move}"
+
+msgid "Move played: {move}"
+msgstr "Coup joué : {move}"
+
+msgid "Move replayed: {move}"
+msgstr "Coup rejoué : {move}"
+
+msgid "Move cancelled for {color}."
+msgstr "Coup annulé pour {color}."
+
+msgid "Hint: try {move}"
+msgstr "Conseil : essayez {move}"
+
+msgid "TIME OUT for {name}!"
+msgstr "TEMPS ÉCOULÉ pour {name} !"
+
+msgid "Reason: {reason}"
+msgstr "Raison : {reason}"
+
+msgid "Territory scores -> White: {w} | Black: {b}"
+msgstr "Scores de territoire -> Blanc : {w} | Noir : {b}"
+
+msgid "New game {size}x{size} vs {adversaire}"
+msgstr "Nouvelle partie {size}x{size} contre {adversaire}"
+
+msgid "Game saved to {filename}."
+msgstr "Partie sauvegardée dans {filename}."
+
+msgid "Game loaded from {filename} ({n} moves replayed)."
+msgstr "Partie chargée depuis {filename} ({n} coups rejoués)."
+
+msgid "File not found: {filename}"
+msgstr "Fichier introuvable : {filename}"
+
+msgid "Save failed: {error}"
+msgstr "Échec de la sauvegarde : {error}"
+
+msgid "Load failed: {error}"
+msgstr "Échec du chargement : {error}"
+
+msgid "Queen move invalid: {reason}"
+msgstr "Déplacement de reine invalide : {reason}"
+
+msgid "Arrow shot invalid: {reason}"
+msgstr "Tir de flèche invalide : {reason}"
+
+msgid "No white piece at {pos}"
+msgstr "Pas de pièce blanche en {pos}"
+
+msgid "No black piece at {pos}"
+msgstr "Pas de pièce noire en {pos}"
+
+msgid "Moves possible from {pos}: {count}"
+msgstr "Coups possibles depuis {pos} : {count}"
+
+msgid "{name} is blocked!"
+msgstr "{name} est bloqué !"
+
+msgid "{name} has no legal move!"
+msgstr "{name} n'a aucun coup légal !"
+
+msgid "{name} plays White."
+msgstr "{name} joue Blanc."
+
+msgid "{name} plays Black."
+msgstr "{name} joue Noir."
+
+msgid "AI ({name}) joined as Black."
+msgstr "L'IA ({name}) a rejoint la partie en Noir."
+
+
+msgid "Arrow (ex: e6) | 'undo': "
+msgstr "Flèche (ex : e6) | 'undo' : "
+
+msgid "Game mode (local/lan): "
+msgstr "Mode de jeu (local/lan) : "
+
+msgid "Usage: save FILE (ex: save mygame.json)"
+msgstr "Usage : save FICHIER (ex : save mapartie.json)"
+
+msgid "Usage: load FILE (ex: load mygame.json)"
+msgstr "Usage : load FICHIER (ex : load mapartie.json)"
+
+msgid "Usage: set PARAM=VALUE (ex: set ai_time=10)"
+msgstr "Usage : set PARAMETRE=VALEUR (ex : set ai_time=10)"
+
+msgid "Usage: choice <case> (ex: choice d4)"
+msgstr "Usage : choice <case> (ex : choice d4)"
+
+msgid "Unknown command: '{cmd}'. Type 'help' for available commands."
+msgstr "Commande inconnue : '{cmd}'. Tapez 'help' pour voir les commandes."
+
+msgid "  White : {w:.1f}s"
+msgstr "  Blanc : {w:.1f}s"
+
+msgid "  Black : {b:.1f}s"
+msgstr "  Noir : {b:.1f}s"
+
+msgid "Board size: {size}"
+msgstr "Taille du plateau : {size}"
+
+msgid "AI mode: {mode}"
+msgstr "Mode IA : {mode}"
+
+msgid "AI time limit: {time}s"
+msgstr "Limite de temps IA : {time}s"
+
+msgid "AI minimax depth: {depth}"
+msgstr "Profondeur minimax IA : {depth}"
+
+msgid "AI evaluator: {evaluator}"
+msgstr "Évaluateur IA : {evaluator}"
+
+msgid "Player time limit: {time} min"
+msgstr "Limite de temps joueur : {time} min"
+
+msgid "History is empty."
+msgstr "L'historique est vide."
+
+msgid "Unknown show command"
+msgstr "Commande show inconnue"
+
+msgid "Share one of these IPs with the other PC:"
+msgstr "Partagez l'une de ces adresses IP avec l'autre PC :"
+
+
+msgid "Unknown command. Type help to see available commands."
+msgstr "Commande inconnue. Tapez help pour afficher les commandes disponibles."
+
+msgid "Your action (choice, move, undo, redo, history, show, hint, pause, save, load, help, quit): "
+msgstr "Votre action (choice, move, undo, redo, history, show, hint, pause, save, load, help, quit): "
+
+msgid "Choose opponent mode (hu/ai/aiai/network): "
+msgstr "Choisissez le mode adversaire (hu/ai/aiai/network) : "
+
+
+msgid "Usage: show board|history|time|configuration"
+msgstr "Usage : show board|history|time|configuration"
+
+msgid "History:"
+msgstr "Historique :"
+
+msgid "Configuration:"
+msgstr "Configuration :"
+
+msgid "The game has not started yet."
+msgstr "La partie n'a pas encore commencé."
+
+msgid "Usage: new [hu|ai|aiai|network]"
+msgstr "Usage : new [hu|ai|aiai|network]"
+
+msgid "Unknown game mode. Use hu, ai, aiai or network."
+msgstr "Mode de jeu inconnu. Utilisez hu, ai, aiai ou network."
+
+msgid ">> AI played: {move}"
+msgstr ">> L'IA a joué : {move}"
+
+msgid ">> Remote played: {move}"
+msgstr ">> Le joueur distant a joué : {move}"
+
+msgid "Opponent wants to undo. Agree? (y/n): "
+msgstr "L'adversaire veut annuler. Accepter ? (y/n) : "
+
+msgid "Host identified as: {host_name}"
+msgstr "Hôte identifié : {host_name}"
+
+msgid "New game {size}x{size} vs {opponent}"
+msgstr "Nouvelle partie {size}x{size} contre {opponent}"
+
+msgid "Waiting for remote move from {name}... (Type 'undo' or 'q' to interrupt)"
+msgstr "En attente du coup de {name}... (Tapez 'undo' ou 'q' pour interrompre)"
+
+msgid "\n[LOCAL] Only 'undo' or 'quit' allowed. (Buffer: {line})"
+msgstr "\n[LOCAL] Seuls 'undo' ou 'quit' sont autorisés. (Saisie : {line})"
+
+msgid "\n[REMOTE] Opponent wants to undo."
+msgstr "\n[REMOTE] L'adversaire demande une annulation."
+
+msgid "Agree? (y/n): "
+msgstr "Accepter ? (y/n) : "
+
+msgid "\n[REMOTE] Opponent quit the game."
+msgstr "\n[REMOTE] L'adversaire a quitté la partie."
+
+msgid "\n[REMOTE] Session closed."
+msgstr "\n[REMOTE] Session fermée."
+
+msgid "\n[REMOTE] Game Over: {reason}"
+msgstr "\n[REMOTE] Fin de partie : {reason}"
+
+msgid "\n[REMOTE] Player identified as: {name}"
+msgstr "\n[REMOTE] Joueur identifié : {name}"
+
+msgid "Save the game before quitting? [y/N] "
+msgstr "Sauvegarder la partie avant de quitter ? [y/N] "
+
+msgid "Enter file path: "
+msgstr "Entrez le chemin du fichier : "
+
+msgid "Scanning for servers..."
+msgstr "Recherche de serveurs..."
+
+msgid "Tip: try a direct connection with 'join <host-ip>:<port>'."
+msgstr "Astuce : essayez une connexion directe avec 'join <host-ip>:<port>'."
+
+msgid "Remote player identified as: {name}"
+msgstr "Joueur distant identifié : {name}"
+
+msgid "\nIt's the turn of {name} ({color})"
+msgstr "\nC'est au tour de {name} ({color})"
+
+msgid "Your name ({color}): "
+msgstr "Votre nom ({color}) : "
+
+msgid "white"
+msgstr "blanc"
+
+msgid "black"
+msgstr "noir"
+
+msgid "human"
+msgstr "humain"
+
+msgid "AI"
+msgstr "IA"
+
+msgid "AI vs AI"
+msgstr "IA vs IA"
+
+msgid "network"
+msgstr "réseau"
+
+msgid "\nAvailable Servers:"
+msgstr "\nServeurs disponibles :"
+
+msgid "Invitation received from {player_id} ({name}). Use accept or decline."
+msgstr "Invitation reçue de {player_id} ({name}). Utilisez accept ou decline."
+
+msgid "Invitation sent to {player_id} ({name})."
+msgstr "Invitation envoyée à {player_id} ({name})."
+
+msgid "Invitation accepted by {player_id} ({name})."
+msgstr "Invitation acceptée par {player_id} ({name})."
+
+msgid "Invitation accepted. Starting network game with {player_id}..."
+msgstr "Invitation acceptée. Démarrage de la partie réseau avec {player_id}..."
+
+msgid "Invitation response sent."
+msgstr "Réponse à l'invitation envoyée."
+
+msgid "Connected to {addr}:{port}. Mode: CLIENT"
+msgstr "Connecté à {addr}:{port}. Mode : CLIENT"
+
+msgid "Waiting for host name..."
+msgstr "En attente du nom de l'hôte..."
+
+msgid "Your host name: "
+msgstr "Votre nom d'hôte : "
+
+msgid "\n[NETWORK] Host started game: Size {size}, Host is {host_color}"
+msgstr "\n[RÉSEAU] L'hôte a démarré la partie : Taille {size}, l'hôte est {host_color}"

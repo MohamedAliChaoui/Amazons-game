@@ -1,0 +1,384 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "=== AMAZONS CLI ==="
+msgstr "=== AMAZONS CLI ==="
+
+msgid "Board size Default : {size}"
+msgstr "Board size Default : {size}"
+
+msgid "Type 'help' or 'h' to see commands."
+msgstr "Type 'help' or 'h' to see commands."
+
+msgid "Do you want to play against a human or the AI? (hu/ai): "
+msgstr "Do you want to play against a human or the AI? (hu/ai): "
+
+msgid "Invalid input, please choose 'hu', 'ai' or 'aiai'."
+msgstr "Invalid input, please choose 'hu', 'ai' or 'aiai'."
+
+msgid "Board size (4-11): "
+msgstr "Board size (4-11): "
+
+msgid "Size must be between 4 and 11."
+msgstr "Size must be between 4 and 11."
+
+msgid "Enter a valid number."
+msgstr "Enter a valid number."
+
+msgid "Commands:"
+msgstr "Commands:"
+
+msgid "  new | n           Start new game"
+msgstr "  new | n           Start new game"
+
+msgid "  show board | sb   Display board"
+msgstr "  show board | sb   Display board"
+
+msgid "  help | h          Show help"
+msgstr "  help | h          Show help"
+
+msgid "  quit | q          Exit"
+msgstr "  quit | q          Exit"
+
+msgid "\nBoard:"
+msgstr "\nBoard:"
+
+msgid "Bye!"
+msgstr "Bye!"
+
+msgid "Starting new game against human..."
+msgstr "Starting new game against human..."
+
+msgid "Starting new game against AI..."
+msgstr "Starting new game against AI..."
+
+msgid "Starting new AI vs AI game..."
+msgstr "Starting new AI vs AI game..."
+
+msgid "Unknown show command. Use: board, history, time, configuration"
+msgstr "Unknown show command. Use: board, history, time, configuration"
+
+msgid "Connected to LAN server"
+msgstr "Connected to LAN server"
+
+msgid "AI is thinking..."
+msgstr "AI is thinking..."
+
+msgid "Move undone. Back to start."
+msgstr "Move undone. Back to start."
+
+msgid "Nothing to undo"
+msgstr "Nothing to undo"
+
+msgid "Nothing to redo."
+msgstr "Nothing to redo."
+
+msgid "No moves played yet."
+msgstr "No moves played yet."
+
+msgid "=== Move History ==="
+msgstr "=== Move History ==="
+
+msgid "=== Time Remaining ==="
+msgstr "=== Time Remaining ==="
+
+msgid "=== Configuration ==="
+msgstr "=== Configuration ==="
+
+msgid "*** GAME OVER ***"
+msgstr "*** GAME OVER ***"
+
+msgid "RESULT: BLACK WINS!"
+msgstr "RESULT: BLACK WINS!"
+
+msgid "RESULT: WHITE WINS!"
+msgstr "RESULT: WHITE WINS!"
+
+msgid "RESULT: DRAW!"
+msgstr "RESULT: DRAW!"
+
+msgid "RESULT: BLACK WINS (White ran out of time)!"
+msgstr "RESULT: BLACK WINS (White ran out of time)!"
+
+msgid "RESULT: WHITE WINS (Black ran out of time)!"
+msgstr "RESULT: WHITE WINS (Black ran out of time)!"
+
+msgid "Invalid format. Use: move e2-e4"
+msgstr "Invalid format. Use: move e2-e4"
+
+msgid "Invalid coordinates (e.g., a1, e2)."
+msgstr "Invalid coordinates (e.g., a1, e2)."
+
+msgid "Invalid coordinates. Use algebraic notation (e.g., a1, d4)."
+msgstr "Invalid coordinates. Use algebraic notation (e.g., a1, d4)."
+
+msgid "Invalid arrow position (e.g., e6)."
+msgstr "Invalid arrow position (e.g., e6)."
+
+msgid "Invalid action! Type move, undo, redo, choice, hint, pause or save."
+msgstr "Invalid action! Type move, undo, redo, choice, hint, pause or save."
+
+msgid "You haven't played any move to undo yet."
+msgstr "You haven't played any move to undo yet."
+
+msgid "No hint available."
+msgstr "No hint available."
+
+msgid "Pause only available during a game."
+msgstr "Pause only available during a game."
+
+msgid "Undo only available during a game."
+msgstr "Undo only available during a game."
+
+msgid "Redo only available during a game."
+msgstr "Redo only available during a game."
+
+msgid "Hint only available during a game."
+msgstr "Hint only available during a game."
+
+msgid "Unknown mode. Use 'local' or 'lan'."
+msgstr "Unknown mode. Use 'local' or 'lan'."
+
+msgid "Game {state}."
+msgstr "Game {state}."
+
+msgid "PAUSED"
+msgstr "PAUSED"
+
+msgid "RESUMED"
+msgstr "RESUMED"
+
+msgid "It's {name}'s turn ({color})"
+msgstr "It's {name}'s turn ({color})"
+
+msgid "Time remaining -> White: {w}s | Black: {b}s"
+msgstr "Time remaining -> White: {w}s | Black: {b}s"
+
+msgid "AI played: {move}"
+msgstr "AI played: {move}"
+
+msgid "Move played: {move}"
+msgstr "Move played: {move}"
+
+msgid "Move replayed: {move}"
+msgstr "Move replayed: {move}"
+
+msgid "Move cancelled for {color}."
+msgstr "Move cancelled for {color}."
+
+msgid "Hint: try {move}"
+msgstr "Hint: try {move}"
+
+msgid "TIME OUT for {name}!"
+msgstr "TIME OUT for {name}!"
+
+msgid "Reason: {reason}"
+msgstr "Reason: {reason}"
+
+msgid "Territory scores -> White: {w} | Black: {b}"
+msgstr "Territory scores -> White: {w} | Black: {b}"
+
+msgid "New game {size}x{size} vs {adversaire}"
+msgstr "New game {size}x{size} vs {adversaire}"
+
+msgid "Game saved to {filename}."
+msgstr "Game saved to {filename}."
+
+msgid "Game loaded from {filename} ({n} moves replayed)."
+msgstr "Game loaded from {filename} ({n} moves replayed)."
+
+msgid "File not found: {filename}"
+msgstr "File not found: {filename}"
+
+msgid "Save failed: {error}"
+msgstr "Save failed: {error}"
+
+msgid "Load failed: {error}"
+msgstr "Load failed: {error}"
+
+msgid "Queen move invalid: {reason}"
+msgstr "Queen move invalid: {reason}"
+
+msgid "Arrow shot invalid: {reason}"
+msgstr "Arrow shot invalid: {reason}"
+
+msgid "No white piece at {pos}"
+msgstr "No white piece at {pos}"
+
+msgid "No black piece at {pos}"
+msgstr "No black piece at {pos}"
+
+msgid "Moves possible from {pos}: {count}"
+msgstr "Moves possible from {pos}: {count}"
+
+msgid "{name} is blocked!"
+msgstr "{name} is blocked!"
+
+msgid "{name} has no legal move!"
+msgstr "{name} has no legal move!"
+
+msgid "{name} plays White."
+msgstr "{name} plays White."
+
+msgid "{name} plays Black."
+msgstr "{name} plays Black."
+
+msgid "AI ({name}) joined as Black."
+msgstr "AI ({name}) joined as Black."
+
+
+msgid "Arrow (ex: e6) | 'undo': "
+msgstr "Arrow (ex: e6) | 'undo': "
+
+msgid "Game mode (local/lan): "
+msgstr "Game mode (local/lan): "
+
+msgid "Usage: save FILE (ex: save mygame.json)"
+msgstr "Usage: save FILE (ex: save mygame.json)"
+
+msgid "Usage: load FILE (ex: load mygame.json)"
+msgstr "Usage: load FILE (ex: load mygame.json)"
+
+msgid "Usage: set PARAM=VALUE (ex: set ai_time=10)"
+msgstr "Usage: set PARAM=VALUE (ex: set ai_time=10)"
+
+msgid "Usage: choice <case> (ex: choice d4)"
+msgstr "Usage: choice <case> (ex: choice d4)"
+
+msgid "Unknown command: '{cmd}'. Type 'help' for available commands."
+msgstr "Unknown command: '{cmd}'. Type 'help' for available commands."
+
+msgid "  White : {w:.1f}s"
+msgstr "  White : {w:.1f}s"
+
+msgid "  Black : {b:.1f}s"
+msgstr "  Black : {b:.1f}s"
+
+msgid "History:"
+msgstr "History:"
+
+msgid "Configuration:"
+msgstr "Configuration:"
+
+msgid "The game has not started yet."
+msgstr "The game has not started yet."
+
+msgid "Usage: new [hu|ai|aiai|network]"
+msgstr "Usage: new [hu|ai|aiai|network]"
+
+msgid "Unknown game mode. Use hu, ai, aiai or network."
+msgstr "Unknown game mode. Use hu, ai, aiai or network."
+
+msgid ">> AI played: {move}"
+msgstr ">> AI played: {move}"
+
+msgid ">> Remote played: {move}"
+msgstr ">> Remote played: {move}"
+
+msgid "Opponent wants to undo. Agree? (y/n): "
+msgstr "Opponent wants to undo. Agree? (y/n): "
+
+msgid "Host identified as: {host_name}"
+msgstr "Host identified as: {host_name}"
+
+msgid "New game {size}x{size} vs {opponent}"
+msgstr "New game {size}x{size} vs {opponent}"
+
+msgid "Waiting for remote move from {name}... (Type 'undo' or 'q' to interrupt)"
+msgstr "Waiting for remote move from {name}... (Type 'undo' or 'q' to interrupt)"
+
+msgid "\n[LOCAL] Only 'undo' or 'quit' allowed. (Buffer: {line})"
+msgstr "\n[LOCAL] Only 'undo' or 'quit' allowed. (Buffer: {line})"
+
+msgid "\n[REMOTE] Opponent wants to undo."
+msgstr "\n[REMOTE] Opponent wants to undo."
+
+msgid "Agree? (y/n): "
+msgstr "Agree? (y/n): "
+
+msgid "\n[REMOTE] Opponent quit the game."
+msgstr "\n[REMOTE] Opponent quit the game."
+
+msgid "\n[REMOTE] Session closed."
+msgstr "\n[REMOTE] Session closed."
+
+msgid "\n[REMOTE] Game Over: {reason}"
+msgstr "\n[REMOTE] Game Over: {reason}"
+
+msgid "\n[REMOTE] Player identified as: {name}"
+msgstr "\n[REMOTE] Player identified as: {name}"
+
+msgid "Save the game before quitting? [y/N] "
+msgstr "Save the game before quitting? [y/N] "
+
+msgid "Enter file path: "
+msgstr "Enter file path: "
+
+msgid "Scanning for servers..."
+msgstr "Scanning for servers..."
+
+msgid "Tip: try a direct connection with 'join <host-ip>:<port>'."
+msgstr "Tip: try a direct connection with 'join <host-ip>:<port>'."
+
+msgid "Remote player identified as: {name}"
+msgstr "Remote player identified as: {name}"
+
+msgid "\nIt's the turn of {name} ({color})"
+msgstr "\nIt's the turn of {name} ({color})"
+
+msgid "Your name ({color}): "
+msgstr "Your name ({color}): "
+
+msgid "white"
+msgstr "white"
+
+msgid "black"
+msgstr "black"
+
+msgid "human"
+msgstr "human"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "AI vs AI"
+msgstr "AI vs AI"
+
+msgid "network"
+msgstr "network"
+
+msgid "\nAvailable Servers:"
+msgstr "\nAvailable Servers:"
+
+msgid "Invitation received from {player_id} ({name}). Use accept or decline."
+msgstr "Invitation received from {player_id} ({name}). Use accept or decline."
+
+msgid "Invitation sent to {player_id} ({name})."
+msgstr "Invitation sent to {player_id} ({name})."
+
+msgid "Invitation accepted by {player_id} ({name})."
+msgstr "Invitation accepted by {player_id} ({name})."
+
+msgid "Invitation accepted. Starting network game with {player_id}..."
+msgstr "Invitation accepted. Starting network game with {player_id}..."
+
+msgid "Invitation response sent."
+msgstr "Invitation response sent."
+
+msgid "Connected to {addr}:{port}. Mode: CLIENT"
+msgstr "Connected to {addr}:{port}. Mode: CLIENT"
+
+msgid "Waiting for host name..."
+msgstr "Waiting for host name..."
+
+msgid "Your host name: "
+msgstr "Your host name: "
+
+msgid "Only the host can load a saved game in network mode."
+msgstr "Only the host can load a saved game in network mode."
+
+msgid "\n[NETWORK] Host started game: Size {size}, Host is {host_color}"
+msgstr "\n[NETWORK] Host started game: Size {size}, Host is {host_color}"
+msgid "PLayer is connected to your server,you can now either start a game with 'new network' or type 'players' and choose a player with 'new PLAYER_ID'."
+msgstr "PLayer is connected to your server,you can now either start a game with 'new network' or type 'players' and choose a player with 'new PLAYER_ID'."

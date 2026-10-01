@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu des Amazones | IA & Bitboards - Portfolio Demo</title>
+  <meta name="description" content="Démonstration interactive du Jeu des Amazones avec moteurs d'IA Minimax, Monte Carlo Tree Search (MCTS) et représentation par Bitboards exécutés en WebAssembly (Pyodide).">
+
+  <!-- Google Fonts -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <!-- Main App Wrapper -->
+  <div class="app-layout">
+
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>AMAZONS <span>AI</span></h1>
+          <p class="brand-subtitle">Jeu des Amazones · Moteur Bitboard & IA en WebAssembly</p>
+        </div>
+      </div>
+
+      <div class="header-center-info">
+        <div id="engine-status-badge" class="badge badge-loading">
+          <span class="pulse-dot"></span>
+          <span id="engine-status-text">Initialisation WebAssembly...</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-sound-toggle" class="btn btn-icon" title="Activer / Couper le son" aria-label="Son">
+          <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          <svg class="icon-sound-off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        </button>
+
+        <button id="btn-rules" class="btn btn-secondary" title="Voir les règles du jeu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Règles</span>
+        </button>
+
+        <button id="btn-settings" class="btn btn-primary" title="Configurer la partie et l'IA">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Options</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="app-main">
+
+      <!-- Left Column: Interactive Game Board -->
+      <section class="board-column">
+        <!-- Turn Phase Guide Bar -->
+        <div class="turn-banner" id="turn-banner">
+          <div class="turn-banner-avatar" id="turn-avatar">
+            <span class="queen-token white-token"></span>
+          </div>
+          <div class="turn-banner-content">
+            <div class="turn-banner-title" id="turn-player-title">Au tour des Blancs</div>
+            <div class="turn-banner-desc" id="turn-step-desc">Étape 1 : Sélectionnez une de vos amazones</div>
+          </div>
+          <div class="turn-banner-timer" id="turn-timer">00:00</div>
+        </div>
+
+        <!-- The Board Frame -->
+        <div class="board-wrapper">
+          <div class="board-outer-container">
+            <!-- Top row: Corner, Coord Top, Corner -->
+            <div class="coord-corner"></div>
+            <div class="board-coord-row coord-top" id="coord-top"></div>
+            <div class="coord-corner"></div>
+
+            <!-- Middle row: Coord Left, Game Board, Coord Right -->
+            <div class="board-coord-col coord-left" id="coord-left"></div>
+            <div id="game-board" class="board-grid" role="grid" aria-label="Plateau de jeu">
+              <!-- Cells rendered dynamically by JS -->
+            </div>
+            <div class="board-coord-col coord-right" id="coord-right"></div>
+
+            <!-- Bottom row: Corner, Coord Bottom, Corner -->
+            <div class="coord-corner"></div>
+            <div class="board-coord-row coord-bottom" id="coord-bottom"></div>
+            <div class="coord-corner"></div>
+          </div>
+        </div>
+
+        <!-- Board Control Buttons -->
+        <div class="board-quick-actions">
+          <button id="btn-undo" class="btn btn-secondary" title="Annuler le dernier coup" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path></svg>
+            <span>Annuler</span>
+          </button>
+
+          <button id="btn-redo" class="btn btn-secondary" title="Refaire le coup" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"></path></svg>
+            <span>Refaire</span>
+          </button>
+
+          <button id="btn-hint" class="btn btn-accent" title="Demander conseil à l'IA">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>
+            <span>Indice IA</span>
+          </button>
+
+          <button id="btn-autoplay" class="btn btn-secondary" title="Lancer une démonstration IA vs IA">
+            <svg id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg id="icon-pause" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+            <span id="text-autoplay">Auto IA</span>
+          </button>
+
+          <button id="btn-reset" class="btn btn-danger-soft" title="Recommencer une nouvelle partie">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+            <span>Reset</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Right Column: Control Center & Telemetry -->
+      <aside class="dashboard-column">
+
+        <!-- Player Matchup Card -->
+        <div class="panel-card matchup-card">
+          <div class="panel-title">Joueurs & Territoire</div>
+
+          <div class="matchup-grid">
+            <!-- White Player Card -->
+            <div class="player-card white-card active" id="card-player-w">
+              <div class="player-head">
+                <span class="player-token-badge token-w"></span>
+                <div class="player-meta">
+                  <div class="player-name" id="name-player-w">Blancs (Humain)</div>
+                  <div class="player-role" id="role-player-w">Premier joueur</div>
+                </div>
+              </div>
+              <div class="player-stats">
+                <div class="stat-box">
+                  <span class="stat-label">Territoire</span>
+                  <span class="stat-value" id="territory-w">28</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label">Temps</span>
+                  <span class="stat-value font-mono" id="clock-w">00:00</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Black Player Card -->
+            <div class="player-card black-card" id="card-player-b">
+              <div class="player-head">
+                <span class="player-token-badge token-b"></span>
+                <div class="player-meta">
+                  <div class="player-name" id="name-player-b">Noirs (IA Minimax)</div>
+                  <div class="player-role" id="role-player-b">Second joueur</div>
+                </div>
+              </div>
+              <div class="player-stats">
+                <div class="stat-box">
+                  <span class="stat-label">Territoire</span>
+                  <span class="stat-value" id="territory-b">28</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label">Temps</span>
+                  <span class="stat-value font-mono" id="clock-b">00:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Territory Gauge Bar -->
+          <div class="territory-gauge-container">
+            <div class="gauge-labels">
+              <span>Contrôle Blanc</span>
+              <span id="territory-pct-text">50% / 50%</span>
+              <span>Contrôle Noir</span>
+            </div>
+            <div class="gauge-bar">
+              <div class="gauge-fill-w" id="gauge-fill-w" style="width: 50%;"></div>
+              <div class="gauge-fill-b" id="gauge-fill-b" style="width: 50%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Engine Monitor -->
+        <div class="panel-card ai-monitor-card" id="ai-monitor-card">
+          <div class="panel-title flex-between">
+            <span>Moteur d'IA & Algorithme</span>
+            <span class="badge badge-accent" id="current-ai-badge">Minimax (Hybride)</span>
+          </div>
+
+          <div class="ai-status-row" id="ai-status-row">
+            <div class="ai-pulse-spinner" id="ai-spinner"></div>
+            <div class="ai-status-text" id="ai-status-text">En attente de votre coup...</div>
+          </div>
+
+          <div class="ai-details-grid">
+            <div class="detail-item">
+              <span class="detail-k">Plateau</span>
+              <span class="detail-v" id="detail-size">6 × 6</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-k">Structure</span>
+              <span class="detail-v">Bitboard 64-bit</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-k">Profondeur</span>
+              <span class="detail-v" id="detail-depth">2 demi-coups</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-k">Évaluation</span>
+              <span class="detail-v" id="detail-eval">Territoire + Mobilité</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Move History Table -->
+        <div class="panel-card history-card">
+          <div class="panel-title flex-between">
+            <span>Historique des Coups</span>
+            <span class="history-count" id="history-count">0 coup</span>
+          </div>
+
+          <div class="history-list-wrapper" id="history-container">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Blancs</th>
+                  <th>Noirs</th>
+                </tr>
+              </thead>
+              <tbody id="history-tbody">
+                <tr class="empty-row">
+                  <td colspan="3">Aucun coup joué pour le moment</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tech Stack Credit Card -->
+        <div class="portfolio-credit-card">
+          <div class="credit-head">
+            <span class="badge badge-outline">Projet Master 1</span>
+            <span class="credit-author">Université de Bordeaux</span>
+          </div>
+          <p class="credit-desc">
+            Implémentation haute performance combinant structures <strong>Bitboards</strong> et moteurs d'IA (<strong>Minimax $\alpha$-$\beta$</strong>, <strong>MCTS UCT</strong>). Compilé en <strong>WebAssembly</strong> via Pyodide pour démonstration directe dans le portfolio.
+          </p>
+        </div>
+
+      </aside>
+    </main>
+
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="modal-settings" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="settings-title">Configuration de la Partie</h2>
+        <button class="btn-close" id="btn-close-settings" aria-label="Fermer">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Board Size Selection -->
+        <div class="form-group">
+          <label class="form-label" for="select-board-size">Taille du Plateau</label>
+          <select id="select-board-size" class="form-select">
+            <option value="4">4 × 4 (Partie ultra-rapide, 2 amazones)</option>
+            <option value="5">5 × 5 (Partie dynamique, 3 amazones)</option>
+            <option value="6" selected>6 × 6 (Idéal démo portfolio, 4 amazones)</option>
+            <option value="8">8 × 8 (Plateau intermédiaire)</option>
+            <option value="10">10 × 10 (Taille officielle tournoi)</option>
+          </select>
+        </div>
+
+        <!-- Game Mode Selection -->
+        <div class="form-group">
+          <label class="form-label" for="select-game-mode">Mode de Jeu</label>
+          <select id="select-game-mode" class="form-select">
+            <option value="human_vs_ai" selected>Humain (Blancs) vs IA (Noirs)</option>
+            <option value="ai_vs_human">IA (Blancs) vs Humain (Noirs)</option>
+            <option value="human_vs_human">Humain vs Humain (Passe et joue local)</option>
+            <option value="ai_vs_ai">IA vs IA (Démonstration automatique)</option>
+          </select>
+        </div>
+
+        <!-- AI Engine Selection -->
+        <div class="form-group">
+          <label class="form-label" for="select-ai-engine">Algorithme d'IA</label>
+          <select id="select-ai-engine" class="form-select">
+            <option value="minimax" selected>Minimax avec élagage Alpha-Bêta</option>
+            <option value="mcts">Monte Carlo Tree Search (MCTS / UCT)</option>
+            <option value="iterative">Approfondissement Itératif (Iterative Deepening)</option>
+            <option value="random">Aléatoire (Random baseline)</option>
+          </select>
+        </div>
+
+        <!-- Minimax Options Sub-panel -->
+        <div id="minimax-options-box" class="form-subbox">
+          <div class="form-group">
+            <label class="form-label" for="select-minimax-depth">Profondeur Minimax</label>
+            <select id="select-minimax-depth" class="form-select">
+              <option value="1">Profondeur 1 (Instantané)</option>
+              <option value="2" selected>Profondeur 2 (Équilibré & rapide)</option>
+              <option value="3">Profondeur 3 (Plus profond, ~1 à 3s)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="select-minimax-eval">Heuristique d'Évaluation</label>
+            <select id="select-minimax-eval" class="form-select">
+              <option value="hybrid" selected>Hybride (70% Territoire + 30% Mobilité)</option>
+              <option value="territory">Territoire pur (Inondation flood-fill)</option>
+              <option value="mobility">Mobilité pure (Nombre de coups légaux)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- MCTS Options Sub-panel -->
+        <div id="mcts-options-box" class="form-subbox hidden">
+          <div class="form-group">
+            <label class="form-label" for="select-mcts-time">Budget Temps MCTS</label>
+            <select id="select-mcts-time" class="form-select">
+              <option value="0.5">0.5 seconde (Très rapide)</option>
+              <option value="1.0" selected>1.0 seconde (Recommandé)</option>
+              <option value="2.0">2.0 secondes (Exploration poussée)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-cancel-settings">Annuler</button>
+        <button class="btn btn-primary" id="btn-apply-settings">Appliquer & Recommencer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rules Modal -->
+  <div id="modal-rules" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+    <div class="modal-card modal-large">
+      <div class="modal-header">
+        <h2 id="rules-title">Règles du Jeu des Amazones</h2>
+        <button class="btn-close" id="btn-close-rules" aria-label="Fermer">&times;</button>
+      </div>
+
+      <div class="modal-body rules-content">
+        <div class="rule-block">
+          <div class="rule-icon">1</div>
+          <div class="rule-text">
+            <h3>Déplacement de l'Amazone</h3>
+            <p>Chaque amazone se déplace d'un nombre quelconque de cases vides en ligne droite (horizontalement, verticalement ou diagonalement), exactement comme une <strong>Dame aux échecs</strong>. Elle ne peut pas sauter par-dessus d'autres amazones ni par-dessus les flèches.</p>
+          </div>
+        </div>
+
+        <div class="rule-block">
+          <div class="rule-icon">2</div>
+          <div class="rule-text">
+            <h3>Tir de Flèche Obligatoire</h3>
+            <p>Immédiatement après s'être déplacée, l'amazone <strong>doit tirer une flèche</strong> depuis sa nouvelle position. La flèche se déplace également comme une dame vers n'importe quelle case libre accessible. La case ciblée devient définitivement bloquée et inutilisable pour le reste de la partie.</p>
+          </div>
+        </div>
+
+        <div class="rule-block">
+          <div class="rule-icon">3</div>
+          <div class="rule-text">
+            <h3>Condition de Victoire</h3>
+            <p>Il n'y a <strong>aucune capture</strong>. Au fur et à mesure que les flèches bloquent l'échiquier, l'espace se réduit. Le premier joueur qui ne dispose plus d'aucun coup légal à son tour <strong>perd immédiatement la partie</strong>.</p>
+          </div>
+        </div>
+
+        <div class="rule-block">
+          <div class="rule-icon">★</div>
+          <div class="rule-text">
+            <h3>Contrôle du Territoire</h3>
+            <p>La stratégie repose sur l'enfermement de l'adversaire et la conquête de "chambres" isolées accessibles exclusivement par ses propres amazones, mesurées par l'heuristique de flood-fill.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-close-rules-ok">J'ai compris !</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="modal-gameover" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card modal-center">
+      <div class="gameover-trophy">🏆</div>
+      <h2 id="gameover-title">Partie Terminée !</h2>
+      <p id="gameover-message" class="gameover-msg">Les Blancs remportent la victoire !</p>
+
+      <div class="gameover-stats-box">
+        <div class="go-stat">
+          <span class="go-stat-k">Coups joués</span>
+          <span class="go-stat-v" id="go-moves-count">0</span>
+        </div>
+        <div class="go-stat">
+          <span class="go-stat-k">Territoire Blanc</span>
+          <span class="go-stat-v" id="go-w-territory">0</span>
+        </div>
+        <div class="go-stat">
+          <span class="go-stat-k">Territoire Noir</span>
+          <span class="go-stat-v" id="go-b-territory">0</span>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-center">
+        <button class="btn btn-primary" id="btn-replay">Nouvelle Partie</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
